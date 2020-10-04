@@ -28,14 +28,19 @@ const server = http.createServer((req, res) => {
       body.push(chunk);
     });
     req.on("end", () => {
-        const parsedBody = Buffer.concat(body).toString();//go+to+message=input value
-        const message = parsedBody.split('=')[1];
+      //é um callback, runs after registration
+      const parsedBody = Buffer.concat(body).toString(); //go+to+message=input value
+      const message = parsedBody.split("=")[1];
       console.log("parse", parsedBody);
-      fs.writeFileSync("message.txt", message);
+      //write a file with write file
+      fs.writeFile("message.txt", message, (err) => {
+        console.log(err);
+        //will be exec. after writing a file:
+        res.statusCode = 302;
+        res.setHeader("Location", "/");
+        return res.end();
+      });
     });
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
-    return res.end();
   }
   //quit the process:
   //process.exit();
