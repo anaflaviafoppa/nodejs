@@ -27,7 +27,7 @@ const requireHandle = (req, res) => {
       //é um callback, runs after registration
       const parsedBody = Buffer.concat(body).toString(); //go+to+message=input value
       const message = parsedBody.split("=")[1];
-      console.log("parse", parsedBody);
+      
       //write a file with write file
       fs.writeFile("message.txt", message, (err) => {
         console.log(err);
