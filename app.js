@@ -28,7 +28,8 @@ app.use(shopRoutes);
 
 //404 page:
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "views", "404.html"));
+  res.render("404");
+  //res.sendFile(path.join(__dirname, "views", "404.html"));
 });
 
 //Criaçao de um servidor:
