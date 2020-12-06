@@ -6,6 +6,12 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+//sharing data around the app:
+//view engine
+app.set("view engine", "pug");
+//onde está as views:
+app.set("views", "views");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //routers
