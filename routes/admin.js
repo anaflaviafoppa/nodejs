@@ -3,19 +3,18 @@ const path = require("path");
 
 const router = express.Router();
 const rootDir = require("../resources/path");
-let bodyParser = require("body-parser");
-//parse bodies:
-router.use(bodyParser.urlencoded({ extended: false }));
+
+const products = [];
 
 router.get("/add-product", (req, res, next) => {
-  console.log("Here in users");
-
   res.sendFile(path.join(rootDir, "views", "add-product.html"));
 });
 
-router.post("/product", (req, res, next) => {
-  console.log("req.body", req.body);
+router.post("/add-product", (req, res, next) => {
+  console.log(req.body.title);
+  products.push({ title: req.body.title });
   res.redirect("/");
 });
 
-module.exports = router;
+exports.routes = router;
+exports.products = products;
