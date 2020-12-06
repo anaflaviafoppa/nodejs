@@ -1,22 +1,26 @@
 //const http = require("http");
 
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
-app.use("/users", (req, res, next) => {
-  console.log("Here in users");
+//routers
 
-  res.send("<h1>Users router</h1>");
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
+
+//static router - css files in public folder for example
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/admin", adminRoutes);
+
+app.use(shopRoutes);
+
+//404 page:
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "views", "404.html"));
 });
-
-app.use("/", (req, res, next) => {
-  console.log("Slash");
-
-  res.send("<h1>HELLO</h1>");
-});
-
-const routes = require("./router");
 
 //Criaçao de um servidor:
 //const server = http.createServer(app);
