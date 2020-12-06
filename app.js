@@ -4,14 +4,14 @@ const express = require("express");
 
 const app = express();
 
-app.use("/special", (req, res, next) => {
-  console.log("Im middleware!");
+app.use("/users", (req, res, next) => {
+  console.log("Here in users");
 
-  res.send("<h1>HELLO Special</h1>");
+  res.send("<h1>Users router</h1>");
 });
 
 app.use("/", (req, res, next) => {
-  console.log("Im middleware!");
+  console.log("Slash");
 
   res.send("<h1>HELLO</h1>");
 });
