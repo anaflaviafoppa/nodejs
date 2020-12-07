@@ -13,8 +13,9 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   //path need to be absolute
-  const products = Product.fetchAll();
-  console.log(products);
-  res.render("shop", { prods: products, docTitle: "Shop" });
+  Product.fetchAll((products) => {
+    res.render("shop", { prods: products, docTitle: "Shop" });
+  });
+
   //res.sendFile(path.join(__dirname, "..", "views", "shop.html"), products);
 };
