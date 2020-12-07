@@ -19,6 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
+//Controller:
+const get404Router = require("./controllers/404");
+
 //static router - css files in public folder for example
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -27,10 +30,7 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 //404 page:
-app.use((req, res, next) => {
-  res.render("404");
-  //res.sendFile(path.join(__dirname, "views", "404.html"));
-});
+app.use(get404Router.get404);
 
 //Criaçao de um servidor:
 //const server = http.createServer(app);
